@@ -20,13 +20,25 @@ public class QuickSort {
     // quicksort the subarray from a[lo] to a[hi]
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
-       //Student TODO
+        int j = partition(a, lo, hi);
+        sort(a, lo, j - 1);
+        sort(a, j + 1, hi);
     }
 
     // partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
     // and return the index j.
     private static int partition(Comparable[] a, int lo, int hi) {
-        //Student TODO
+        Comparable pivot = a[hi];
+        int i = lo - 1;
+
+        for (int j = lo; j < hi; j++) {
+            if (less(a[j], pivot)) {
+                i++;
+                exch(a, i, j);
+            }
+        }
+        exch(a, i + 1, hi);
+        return i + 1;
     }
 
     
